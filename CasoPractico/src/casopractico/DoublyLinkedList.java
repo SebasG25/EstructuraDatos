@@ -19,10 +19,11 @@ public class DoublyLinkedList<T> {
     
     public void add(Student<T> student){
         if (isEmpty()) {
-            head = tail = new Student(student);
+            head = tail = new Student(student, null, null);
         } else {
-            head = new Student(student);
-            head.getNextStudent().setPreviousStudent(head);        }
+            head = new Student(student, null, head);
+            head.getNextStudent().setPreviousStudent(head);        
+        }
     }
     
     public void addStudent(String id, String studentName, String neighborhood, double finalGrade)
@@ -79,7 +80,7 @@ public class DoublyLinkedList<T> {
     
     public String showStudentsNeighborhood(String neighborhood) throws Exception
     {
-        String data = "\033[31mEstudiante(s) de barrio buscado: \n";
+        String data = "\033[31mEstudiante(s) de barrio: " + neighborhood + "\n";
         
         if(isEmpty()){
             throw new Exception("\033[31mERROR: \033[30mLa lista está vacía");
@@ -95,7 +96,7 @@ public class DoublyLinkedList<T> {
                 current = current.getNextStudent();
             }
             
-            if(data != "\033[31mEstudiante(s) de barrio buscado: \n")
+            if(data != "\033[31mEstudiante(s) de barrio: " + neighborhood + "\n")
             {
                 return data;
             }
@@ -103,48 +104,47 @@ public class DoublyLinkedList<T> {
         }
     }
     
-    public DoublyLinkedList<T> newDoubleApprovedList(DoublyLinkedList list) throws Exception
+    public DoublyLinkedList<T> newDoubleApprovedList() throws Exception
     {
         if(isEmpty()){
-            throw new Exception("La lista está vacía");
+            throw new Exception("\033[31mERROR: \033[30mLa lista está vacía");
         }else{
-            Student<T> current = head;
-            DoublyLinkedList<T> approvedStudentList = new DoublyLinkedList<>();
-            while(current != null)
-            {
-                if(current.getFinalGrade() >= 3.0){
-                    approvedStudentList.add(current.getId(), current.getStudentName(), 
-                            current.getNeighborhood(), current.getFinalGrade());
+            Student<T> current = this.head;
+            DoublyLinkedList<T> aprobados = new DoublyLinkedList<>();
+            while(current != null){
+                if(current.getFinalGrade() > 3){
+                    aprobados.add(current);
+                    
                 }
-                current.getNextStudent();
+                current = current.getNextStudent();
             }
-            return approvedStudentList;
+            return aprobados;
         }
     }
     
-    public void newDoubleList(DoublyLinkedList list) throws Exception
+    public DoublyLinkedList<T> newDoubleFailedList() throws Exception
     {
         if(isEmpty()){
-            throw new Exception("ERROR: La lista está vacía");
+            throw new Exception("\033[31mERROR: \033[30mLa lista está vacía");
         }else{
             Student<T> current = this.head;
             DoublyLinkedList<T> aprobados = new DoublyLinkedList<>();
             DoublyLinkedList<T> reprobados = new DoublyLinkedList<>();
             while(current != null){
                 if(current.getFinalGrade() < 3){
-                    reprobados.addStudent(current.getId(), current.getStudentName(), current.getNeighborhood(), current.getFinalGrade());
+                    reprobados.add(current);
+                    
                 }else if(current.getFinalGrade() >= 3){
                     aprobados.add(current);
                 }
                 current = current.getNextStudent();
             }
-            System.out.println(reprobados.showStudent());
-            System.out.println(aprobados.showStudent());
+            return reprobados;
         }
     }
     
     public boolean isEmpty()
     {
-        return head == null;
+        return this.head == null;
     }
 }

@@ -38,11 +38,13 @@ public class Student<T> {
         setNextStudent(nextStudent);
     }
     
-    public Student(Student student){
+    public Student(Student student, Student previousStudent, Student nextStudent){
         setId(student.getId());
         setStudentName(student.getStudentName());
         setNeighborhood(student.getNeighborhood());
         setFinalGrade(student.getFinalGrade());
+        setPreviousStudent(previousStudent);
+        setNextStudent(nextStudent);
     }
 
     /**

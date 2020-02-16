@@ -24,8 +24,9 @@ public class CasoPractico {
         miLista.addStudent("1000869566", "Sebastián", "Calasanz", 3.5);
         miLista.addStudent("1000869888", "Santiago", "Villa Hermosa", 3.0);
         miLista.addStudent("1000869777", "Felipe", "Boston", 2.5);
-        miLista.addStudent("1000869788", "Mi", "Villa Hermosa", 3.1);
+        miLista.addStudent("1000869788", "Miguel", "Villa Hermosa", 3.1);
         miLista.addStudent("1000869777", "Michael", "Boston", 2.9);
+        miLista.addStudent("1000869777", "Simón", "Belén", 1.0);
         
         System.out.println(miLista.showStudent());
        
@@ -41,15 +42,16 @@ public class CasoPractico {
             System.out.println(ex.getMessage());
         }
         
-//        try{
-//            DoublyLinkedList<Student> miListaAprobados = miLista.newDoubleApprovedList(miLista);
-//            System.out.println("\033[31mLista de estudiantes aprobados: \033[30m \n" + miListaAprobados.showStudent());
-//        }catch(Exception ex){
-//            System.out.println(ex.getMessage());
-//        }
-//        
         try{
-            miLista.newDoubleList(miLista);
+            DoublyLinkedList<Student> miListaAprobados = miLista.newDoubleApprovedList();
+            System.out.println("\033[31mLista de estudiantes aprobados: \033[30m\n" + miListaAprobados.showStudent());
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        
+        try{
+            DoublyLinkedList<Student> miListaDesaprobados = miLista.newDoubleFailedList();
+            System.out.println("\033[31mLista de estudiantes aprobados: \033[30m\n" + miListaDesaprobados.showStudent());
         }catch(Exception ex){
             System.out.println(ex.getMessage());
         }
