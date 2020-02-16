@@ -9,113 +9,116 @@ package casopractico;
  *
  * @author Sebastian
  */
-public class DoubleStudent<T> {
-    private T finalGrade;
-    private T id;
-    private T studentName;
-    private T neighborhood;
-    private DoubleStudent<T> nextStudent;
-    private DoubleStudent<T> previousStudent;
+public class Student<T> {
+    private double finalGrade;
+    private String id;
+    private String studentName;
+    private String neighborhood;
+    private Student<T> nextStudent;
+    private Student<T> previousStudent;
     
-    public DoubleStudent(T d,DoubleStudent ps, DoubleStudent ns){
-        setFinalGrade(d);
-        setPreviousStudent(ps);
-        setNextStudent(ns);
-    }
-    
-    public DoubleStudent(T d){
-       this(d,null,null) ;
-    }
-    
-    public DoubleStudent(T id, T studentName, T neighborhood, T finalGrade)
+    public Student(String id, String studentName, String neighborhood, double finalGrade)
     {
         setId(id);
         setStudentName(studentName);
         setNeighborhood(neighborhood);
         setFinalGrade(finalGrade);
     }
+//    public Student(T d){
+//       this(d,null,null) ;
+//    }
+    
+    public Student(String id, String studentName, String neighborhood, double finalGrade, Student previousStudent, Student nextStudent)
+    {
+        setId(id);
+        setStudentName(studentName);
+        setNeighborhood(neighborhood);
+        setFinalGrade(finalGrade);
+        setPreviousStudent(previousStudent);
+        setNextStudent(nextStudent);
+    }
 
     /**
      * @return the finalGrade
      */
-    public T getFinalGrade() {
+    public double getFinalGrade() {
         return finalGrade;
     }
 
     /**
      * @param finalGrade the finalGrade to set
      */
-    public void setFinalGrade(T finalGrade) {
+    public void setFinalGrade(double finalGrade) {
         this.finalGrade = finalGrade;
     }
 
     /**
      * @return the id
      */
-    public T getId() {
+    public String getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(T id) {
+    public void setId(String id) {
         this.id = id;
     }
 
     /**
      * @return the studentName
      */
-    public T getStudentName() {
+    public String getStudentName() {
         return studentName;
     }
 
     /**
      * @param studentName the studentName to set
      */
-    public void setStudentName(T studentName) {
+    public void setStudentName(String studentName) {
         this.studentName = studentName;
     }
 
     /**
      * @return the neighborhood
      */
-    public T getNeighborhood() {
+    public String getNeighborhood() {
         return neighborhood;
     }
 
     /**
      * @param neighborhood the neighborhood to set
      */
-    public void setNeighborhood(T neighborhood) {
+    public void setNeighborhood(String neighborhood) {
         this.neighborhood = neighborhood;
     }
 
     /**
      * @return the nextStudent
      */
-    public DoubleStudent<T> getNextStudent() {
+    public Student<T> getNextStudent() {
         return nextStudent;
     }
 
     /**
      * @param nextStudent the nextStudent to set
      */
-    public void setNextStudent(DoubleStudent<T> nextStudent) {
+    public void setNextStudent(Student<T> nextStudent) {
         this.nextStudent = nextStudent;
     }
 
     /**
      * @return the previosStudent
      */
-    public DoubleStudent<T> getPreviousStudent() {
+    public Student<T> getPreviousStudent() {
         return previousStudent;
     }
 
     /**
-     * @param previosStudent the previosStudent to set
+     * @param previousStudent the previousStudent to set
      */
-    public void setPreviousStudent(DoubleStudent<T> previosStudent) {
-        this.previousStudent = previosStudent;
+    public void setPreviousStudent(Student<T> previousStudent) {
+        this.previousStudent = previousStudent;
     }
 }
