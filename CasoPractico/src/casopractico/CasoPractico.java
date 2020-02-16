@@ -49,7 +49,7 @@ public class CasoPractico {
 //        }
 //        
         try{
-            miLista.newDoubleList();
+            miLista.newDoubleList(miLista);
         }catch(Exception ex){
             System.out.println(ex.getMessage());
         }
