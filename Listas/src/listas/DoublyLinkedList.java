@@ -130,7 +130,7 @@ public class DoublyLinkedList<T extends Comparable> implements Ilist<T> {
                 //if (current.getData().compareTo(d) == 0) {
                 return true;
             }
-            current = current.getNextNode()
+            current = current.getNextNode();
         }
 
         return false;
