@@ -49,7 +49,8 @@ public class CasoPractico {
         }
         
         try{
-            System.out.println("\033[31mLista de estudiantes reprobados: \033[30m \n" + miLista.newDoubleFailedList(miLista).showStudent());
+            DoublyLinkedList<Student> miListaReprobados = miLista.newDoubleFailedList(miLista);
+            System.out.println("\033[31mLista de estudiantes reprobados: \033[30m \n" + miListaReprobados.showStudent());
         }catch(Exception ex){
             System.out.println(ex.getMessage());
         }

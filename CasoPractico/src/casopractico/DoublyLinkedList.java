@@ -17,17 +17,25 @@ public class DoublyLinkedList<T> {
         head = tail = null;
     }
     
+    public void add(String id, String studentName, String neighborhood, double finalGrade){
+        if (isEmpty()) {
+            head = tail = new Student(id, studentName, neighborhood, finalGrade);
+        } else {
+            head = new Student(id, studentName, neighborhood, finalGrade, null, head);
+            head.getNextStudent().setPreviousStudent(head);        }
+    }
+    
     public void addStudent(String id, String studentName, String neighborhood, double finalGrade)
     {
         if(isEmpty())
         {
-            head = tail = new Student<>(id, studentName, neighborhood, finalGrade);
+            head = tail = new Student(id, studentName, neighborhood, finalGrade);
         }else{
             if(finalGrade >= 3.0){
-                head = new Student<>(id, studentName, neighborhood, finalGrade, null, head);
+                head = new Student(id, studentName, neighborhood, finalGrade, null, head);
                 head.getNextStudent().setPreviousStudent(head);
             }else if(finalGrade < 3.0){
-                tail = new Student<>(id, studentName, neighborhood, finalGrade, tail, null);
+                tail = new Student(id, studentName, neighborhood, finalGrade, tail, null);
                 tail.getPreviousStudent().setNextStudent(tail);
             }
         }
@@ -97,7 +105,7 @@ public class DoublyLinkedList<T> {
     
     public DoublyLinkedList<T> newDoubleApprovedList(DoublyLinkedList list) throws Exception
     {
-        if(isEmpty()){
+        if(list.isEmpty()){
             throw new Exception("La lista está vacía");
         }else{
             Student<T> current = list.head;
@@ -105,7 +113,7 @@ public class DoublyLinkedList<T> {
             while(current != null)
             {
                 if(current.getFinalGrade() >= 3.0){
-                    approvedStudentList.addStudent(current.getId(), current.getStudentName(), 
+                    approvedStudentList.add(current.getId(), current.getStudentName(), 
                             current.getNeighborhood(), current.getFinalGrade());
                 }
                 current.getNextStudent();
@@ -116,7 +124,7 @@ public class DoublyLinkedList<T> {
     
     public DoublyLinkedList<T> newDoubleFailedList(DoublyLinkedList list) throws Exception
     {
-        if(isEmpty()){
+        if(list.isEmpty()){
             throw new Exception("La lista está vacía");
         }else{
             Student<T> current = list.head;
@@ -124,7 +132,7 @@ public class DoublyLinkedList<T> {
             while(current != null)
             {
                 if(current.getFinalGrade() < 3.0){
-                    failedStudentList.addStudent(current.getId(), current.getStudentName(), 
+                    failedStudentList.add(current.getId(), current.getStudentName(), 
                             current.getNeighborhood(), current.getFinalGrade());
                 }
                 current.getNextStudent();
