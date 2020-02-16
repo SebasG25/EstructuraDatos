@@ -5,6 +5,9 @@
  */
 package listas;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  *
  * @author Sebastián Guzmán
@@ -137,16 +140,14 @@ public class DoublyLinkedList<T extends Comparable> implements Ilist<T> {
 
     @Override
     public boolean checkData(T data) {
-        boolean isRepeated = false;
         DoubleNode<T> current = this.head;
         while(current != null){
             if(current.getData().equals(data)){
-                isRepeated = true;
-                return isRepeated;
+                return true;
             }
             current = current.getNextNode();
         }
-        return isRepeated;
+        return false;
     }
 
     @Override
@@ -156,21 +157,52 @@ public class DoublyLinkedList<T extends Comparable> implements Ilist<T> {
 
     @Override
     public void addDescendently(T data) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(checkData(data)){
+            throw new Exception("ERROR: El dato ya está ingresado en la lista");
+        }else{
+            if (isEmpty() || data.compareTo(head.getData()) == 1) {
+                add(data);
+                return;
+            }
+            if (data.compareTo(tail.getData()) == -1) {
+                addLast(data);
+                return;
+            }
+        
+            DoubleNode<T> current = head.getNextNode();
+            DoubleNode<T> newNode;
+        
+            while (current.getData().compareTo(data)==1) {            
+                current=current.getNextNode();
+            }
+        
+            newNode = new DoubleNode<>(data,current.getPreviousNode(),current);
+            current.getPreviousNode().setNextNode(newNode);
+            current.setPreviousNode(newNode);
+        }
     }
 
     @Override
     public void deleteNode(T data) throws Exception {
-        if(isEmpty()){
-            throw new Exception("ERROR: No hay nodos disponibles para borrar");
-        }else if(!checkData(data)){
-            throw new Exception("ERROR: No se encuentra el dato a borrar en la lista");
+        if(isEmpty() || !checkData(data)){
+            throw new Exception("ERROR: No existe el nodo a borrar");
         }else{
             DoubleNode<T> current = this.head;
             while(current != null){
-                if(current.getData().equals(data)){
-                    current.getPreviousNode().setNextNode(current.getNextNode());
-                    current.getNextNode().setPreviousNode(current.getPreviousNode());
+                if(current.getData().equals(data) && current == this.head){
+                    if(current.getNextNode() != null){
+                        this.head = current.getNextNode();
+                        head.setPreviousNode(null);
+                    }else{
+                        this.head = null;
+                    }
+                }else if(current != this.tail && current.getNextNode().getData() == data){
+                    if(current.getNextNode().getNextNode() != null){
+                        current.setNextNode(current.getNextNode().getNextNode());
+                        current.getNextNode().getNextNode().setPreviousNode(current);
+                    }else{
+                        current.setNextNode(null);
+                    }
                 }
                 current = current.getNextNode();
             }
@@ -179,7 +211,28 @@ public class DoublyLinkedList<T extends Comparable> implements Ilist<T> {
 
     @Override
     public void addNodeAfter(T data, T newData) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(!checkData(data)){
+            throw new Exception("No existe el nodo ingresado como referencia");
+        }else{
+            DoubleNode<T> current = this.head;
+            DoubleNode<T> newNode = new DoubleNode<>(newData);
+            while(current != null){
+                if(current.getData().equals(data)){
+                    if(current.getNextNode() != null){
+                        current.getNextNode().setPreviousNode(newNode);
+                        newNode.setNextNode(current.getNextNode());
+                        newNode.setPreviousNode(current);
+                        current.setNextNode(newNode);
+                    }else{
+                        newNode.setNextNode(null);
+                        newNode.setPreviousNode(current);
+                        current.setNextNode(newNode);
+                    }
+                    
+                }
+                current = current.getNextNode();
+            }
+        }
     }
 
     @Override
