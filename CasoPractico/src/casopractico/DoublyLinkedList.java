@@ -127,7 +127,7 @@ public class DoublyLinkedList<T> {
         if(isEmpty()){
             throw new Exception("ERROR: La lista está vacía");
         }else{
-            Student<T> current = list.head;
+            Student<T> current = this.head;
             DoublyLinkedList<T> aprobados = new DoublyLinkedList<>();
             DoublyLinkedList<T> reprobados = new DoublyLinkedList<>();
             while(current != null){
