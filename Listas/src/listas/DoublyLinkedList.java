@@ -120,23 +120,6 @@ public class DoublyLinkedList<T extends Comparable> implements Ilist<T> {
         return data;
     }
 
-    public boolean searchData(T d) {
-
-        DoubleNode<T> current = this.head;
-
-        while (current != null) {
-            //if (current.getData()==d){}
-            if (current.getData() == d) {
-                //if (current.getData().compareTo(d) == 0) {
-                return true;
-            }
-            current = current.getNextNode();
-        }
-
-        return false;
-
-    }
-
     @Override
     public void showMajorData() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -154,7 +137,16 @@ public class DoublyLinkedList<T extends Comparable> implements Ilist<T> {
 
     @Override
     public boolean checkData(T data) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean isRepeated = false;
+        DoubleNode<T> current = this.head;
+        while(current != null){
+            if(current.getData().equals(data)){
+                isRepeated = true;
+                return isRepeated;
+            }
+            current = current.getNextNode();
+        }
+        return isRepeated;
     }
 
     @Override
@@ -169,7 +161,20 @@ public class DoublyLinkedList<T extends Comparable> implements Ilist<T> {
 
     @Override
     public void deleteNode(T data) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(isEmpty()){
+            throw new Exception("ERROR: No hay nodos disponibles para borrar");
+        }else if(!checkData(data)){
+            throw new Exception("ERROR: No se encuentra el dato a borrar en la lista");
+        }else{
+            DoubleNode<T> current = this.head;
+            while(current != null){
+                if(current.getData().equals(data)){
+                    current.getPreviousNode().setNextNode(current.getNextNode());
+                    current.getNextNode().setPreviousNode(current.getPreviousNode());
+                }
+                current = current.getNextNode();
+            }
+        }
     }
 
     @Override

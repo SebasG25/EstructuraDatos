@@ -122,16 +122,24 @@ public class DoublyLinkedList<T> {
         }
     }
     
-    public void newDoubleList() throws Exception
+    public void newDoubleList(DoublyLinkedList list) throws Exception
     {
         if(isEmpty()){
             throw new Exception("ERROR: La lista está vacía");
         }else{
-            Student<T> current = this.head;
+            Student<T> current = list.head;
+            DoublyLinkedList<T> aprobados = new DoublyLinkedList<>();
+            DoublyLinkedList<T> reprobados = new DoublyLinkedList<>();
             while(current != null){
-                current.getNextStudent();
+                if(current.getFinalGrade() < 3){
+                    reprobados.addStudent(current.getId(), current.getStudentName(), current.getNeighborhood(), current.getFinalGrade());
+                }else if(current.getFinalGrade() >= 3){
+                    aprobados.add(current);
+                }
+                current = current.getNextStudent();
             }
-            
+            System.out.println(reprobados.showStudent());
+            System.out.println(aprobados.showStudent());
         }
     }
     
