@@ -29,7 +29,7 @@ public class CasoPractico {
         miLista.addStudent("1000869777", "Simón", "Belén", 1.0);
         
         System.out.println(miLista.showStudent());
-       
+        
         try{
             System.out.println(miLista.searchStudent("1000869777"));
         }catch(Exception ex){

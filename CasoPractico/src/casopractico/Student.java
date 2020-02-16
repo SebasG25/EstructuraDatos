@@ -7,7 +7,7 @@ package casopractico;
 
 /**
  *
- * @author Sebastian
+ * @author Sebastián Guzmán
  */
 public class Student<T> {
     private double finalGrade;

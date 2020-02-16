@@ -7,7 +7,7 @@ package casopractico;
 
 /**
  *
- * @author Sebastian
+ * @author Sebastián Guzmán
  */
 public class DoublyLinkedList<T> {
     private Student<T> head;
@@ -80,7 +80,7 @@ public class DoublyLinkedList<T> {
     
     public String showStudentsNeighborhood(String neighborhood) throws Exception
     {
-        String data = "\033[31mEstudiante(s) de barrio: " + neighborhood + "\n";
+        String data = "\033[31mEstudiante(s) de barrio buscado: \n";
         
         if(isEmpty()){
             throw new Exception("\033[31mERROR: \033[30mLa lista está vacía");
@@ -96,7 +96,7 @@ public class DoublyLinkedList<T> {
                 current = current.getNextStudent();
             }
             
-            if(data != "\033[31mEstudiante(s) de barrio: " + neighborhood + "\n")
+            if(data != "\033[31mEstudiante(s) de barrio buscado: \n")
             {
                 return data;
             }
