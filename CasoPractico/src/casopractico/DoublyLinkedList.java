@@ -17,11 +17,11 @@ public class DoublyLinkedList<T> {
         head = tail = null;
     }
     
-    public void add(String id, String studentName, String neighborhood, double finalGrade){
+    public void add(Student<T> student){
         if (isEmpty()) {
-            head = tail = new Student(id, studentName, neighborhood, finalGrade);
+            head = tail = new Student(student);
         } else {
-            head = new Student(id, studentName, neighborhood, finalGrade, null, head);
+            head = new Student(student);
             head.getNextStudent().setPreviousStudent(head);        }
     }
     
@@ -105,10 +105,10 @@ public class DoublyLinkedList<T> {
     
     public DoublyLinkedList<T> newDoubleApprovedList(DoublyLinkedList list) throws Exception
     {
-        if(list.isEmpty()){
+        if(isEmpty()){
             throw new Exception("La lista está vacía");
         }else{
-            Student<T> current = list.head;
+            Student<T> current = head;
             DoublyLinkedList<T> approvedStudentList = new DoublyLinkedList<>();
             while(current != null)
             {
@@ -122,22 +122,16 @@ public class DoublyLinkedList<T> {
         }
     }
     
-    public DoublyLinkedList<T> newDoubleFailedList(DoublyLinkedList list) throws Exception
+    public void newDoubleList() throws Exception
     {
-        if(list.isEmpty()){
-            throw new Exception("La lista está vacía");
+        if(isEmpty()){
+            throw new Exception("ERROR: La lista está vacía");
         }else{
-            Student<T> current = list.head;
-            DoublyLinkedList<T> failedStudentList = new DoublyLinkedList<>();
-            while(current != null)
-            {
-                if(current.getFinalGrade() < 3.0){
-                    failedStudentList.add(current.getId(), current.getStudentName(), 
-                            current.getNeighborhood(), current.getFinalGrade());
-                }
+            Student<T> current = this.head;
+            while(current != null){
                 current.getNextStudent();
             }
-            return failedStudentList;
+            
         }
     }
     

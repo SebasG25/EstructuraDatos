@@ -37,6 +37,13 @@ public class Student<T> {
         setPreviousStudent(previousStudent);
         setNextStudent(nextStudent);
     }
+    
+    public Student(Student student){
+        setId(student.getId());
+        setStudentName(student.getStudentName());
+        setNeighborhood(student.getNeighborhood());
+        setFinalGrade(student.getFinalGrade());
+    }
 
     /**
      * @return the finalGrade

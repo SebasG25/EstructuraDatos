@@ -41,16 +41,15 @@ public class CasoPractico {
             System.out.println(ex.getMessage());
         }
         
+//        try{
+//            DoublyLinkedList<Student> miListaAprobados = miLista.newDoubleApprovedList(miLista);
+//            System.out.println("\033[31mLista de estudiantes aprobados: \033[30m \n" + miListaAprobados.showStudent());
+//        }catch(Exception ex){
+//            System.out.println(ex.getMessage());
+//        }
+//        
         try{
-            DoublyLinkedList<Student> miListaAprobados = miLista.newDoubleApprovedList(miLista);
-            System.out.println("\033[31mLista de estudiantes aprobados: \033[30m \n" + miListaAprobados.showStudent());
-        }catch(Exception ex){
-            System.out.println(ex.getMessage());
-        }
-        
-        try{
-            DoublyLinkedList<Student> miListaReprobados = miLista.newDoubleFailedList(miLista);
-            System.out.println("\033[31mLista de estudiantes reprobados: \033[30m \n" + miListaReprobados.showStudent());
+            miLista.newDoubleList();
         }catch(Exception ex){
             System.out.println(ex.getMessage());
         }
