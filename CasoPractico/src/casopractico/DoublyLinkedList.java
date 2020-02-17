@@ -114,7 +114,6 @@ public class DoublyLinkedList<T> {
             while(current != null){
                 if(current.getFinalGrade() > 3){
                     aprobados.add(current);
-                    
                 }
                 current = current.getNextStudent();
             }
@@ -128,14 +127,10 @@ public class DoublyLinkedList<T> {
             throw new Exception("\033[31mERROR: \033[30mLa lista está vacía");
         }else{
             Student<T> current = this.head;
-            DoublyLinkedList<T> aprobados = new DoublyLinkedList<>();
             DoublyLinkedList<T> reprobados = new DoublyLinkedList<>();
             while(current != null){
                 if(current.getFinalGrade() < 3){
                     reprobados.add(current);
-                    
-                }else if(current.getFinalGrade() >= 3){
-                    aprobados.add(current);
                 }
                 current = current.getNextStudent();
             }
