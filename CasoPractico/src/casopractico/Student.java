@@ -14,7 +14,7 @@ public class Student<T> {
     private String id;
     private String studentName;
     private String neighborhood;
-    private Student<T> nextStudent;
+    private Student<T> nextStuden;
     private Student<T> previousStudent;
     
     public Student(String id, String studentName, String neighborhood, double finalGrade)
