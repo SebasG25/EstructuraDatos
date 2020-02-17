@@ -24,9 +24,6 @@ public class Student<T> {
         setNeighborhood(neighborhood);
         setFinalGrade(finalGrade);
     }
-//    public Student(T d){
-//       this(d,null,null) ;
-//    }
     
     public Student(String id, String studentName, String neighborhood, double finalGrade, Student previousStudent, Student nextStudent)
     {
