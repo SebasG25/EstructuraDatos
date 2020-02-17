@@ -30,7 +30,7 @@ public class DoublyLinkedList<T> {
     {
         if(isEmpty())
         {
-            head = tail = new Student(id, studentName, neighborhood, finalGrade);
+            head = tail = new Student(id, studentName, neighborhood, finalGrade, null, null);
         }else{
             if(finalGrade >= 3.0){
                 head = new Student(id, studentName, neighborhood, finalGrade, null, head);
