@@ -51,7 +51,7 @@ public class CasoPractico {
         
         try{
             DoublyLinkedList<Student> miListaDesaprobados = miLista.newDoubleFailedList();
-            System.out.println("\033[31mLista de estudiantes aprobados: \033[30m\n" + miListaDesaprobados.showStudent());
+            System.out.println("\033[31mLista de estudiantes desaprobados: \033[30m\n" + miListaDesaprobados.showStudent());
         }catch(Exception ex){
             System.out.println(ex.getMessage());
         }
