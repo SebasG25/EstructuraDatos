@@ -18,7 +18,6 @@ public class CasoPractico {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
         DoublyLinkedList<Student> miLista = new DoublyLinkedList<>();
         
         miLista.addStudent("1000869566", "Sebastián", "Calasanz", 3.5);
