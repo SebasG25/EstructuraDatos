@@ -14,27 +14,27 @@ public class DoublyLinkedList<T> {
     private Student<T>tail;
 
     /*
-    * Se inicializa una Lista Doble vacía al crearla
+        Se inicializa una Lista Doble vacía al crearla
     */
     public DoublyLinkedList() {
         head = tail = null;
     }
     
     /*
-    * Se agrega a un objeto estudiante a la lista
+        Se agrega a un objeto estudiante a la lista
     */
     public void add(Student<T> student){
         /*
-        * Se verifica si la lista está vacía para inicializar la cabeza y la cola
-        * como el estudiante a ingresar. Se le da los atributos del estudiante, y
-        * se inicializa el siguiente estudiante y estudiante anterior como null
+            Se verifica si la lista está vacía para inicializar la cabeza y la cola
+            como el estudiante a ingresar. Se le da los atributos del estudiante, y
+            se inicializa el siguiente estudiante y estudiante anterior como null
         */
         if (isEmpty()) {
             head = tail = new Student(student, null, null);
         } else {
             /*
-            * Si la lista no está vacía, se corren los estudiantes a la derecha y se
-            * ingresa el nuevo estudiante
+                Si la lista no está vacía, se corren los estudiantes a la derecha y se
+                ingresa el nuevo estudiante
             */
             head = new Student(student, null, head);
             head.getNextStudent().setPreviousStudent(head);        
@@ -49,9 +49,9 @@ public class DoublyLinkedList<T> {
         if(isEmpty())
         {
             /*
-            * Se verifica si la lista está vacía para inicializar la cabeza y la cola
-            * como el estudiante a ingresar. Se le da los atributos del estudiante, y
-            * se inicializa el siguiente estudiante y estudiante anterior como null
+                Se verifica si la lista está vacía para inicializar la cabeza y la cola
+                como el estudiante a ingresar. Se le da los atributos del estudiante, y
+                se inicializa el siguiente estudiante y estudiante anterior como null
             */
             head = tail = new Student(id, studentName, neighborhood, finalGrade, null, null);
         }else{
