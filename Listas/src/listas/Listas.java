@@ -52,8 +52,8 @@ public class Listas {
         
         try{
             miLista2.deleteNode(99);
-            miLista2.deleteNode(11);
             miLista2.deleteNode(66);
+            miLista2.deleteNode(11);
             miLista2.deleteNode(99);
             
         }catch(Exception ex){

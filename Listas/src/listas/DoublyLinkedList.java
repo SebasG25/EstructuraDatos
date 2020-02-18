@@ -17,6 +17,9 @@ public class DoublyLinkedList<T extends Comparable> implements Ilist<T> {
     private DoubleNode<T> head;
     private DoubleNode<T> tail;
 
+    /*
+        Se inicializa una Lista Doble vacía al crearla
+    */
     public DoublyLinkedList() {
         head = tail = null;
     }
@@ -33,7 +36,9 @@ public class DoublyLinkedList<T extends Comparable> implements Ilist<T> {
         }
 
     }
-
+    /*
+        Agregar datos al final de la lista 
+    */
     @Override
     public void addLast(T d) {
         if (isEmpty()) {
@@ -44,18 +49,29 @@ public class DoublyLinkedList<T extends Comparable> implements Ilist<T> {
         }
     }
 
+    /*
+        Agregar datos de menor a mayor
+    */
     @Override
     public void addOrdered(T d) {
-
+        
+        /*
+            Se verifica si el dato que se va a ingresar es menor que la cabeza, entonces se ingresa al principio
+        */
         if (isEmpty() || d.compareTo(head.getData()) == -1) {
             add(d);
             return;
         }
+        /*
+            Se verifica si el dato que se va a ingresar es mayor que la cola, entonces se ingresa al final
+        */
         if (d.compareTo(tail.getData()) == 1) {
             addLast(d);
             return;
         }
-        
+        /*
+            Se verifica que dato es mayor que el dato que se va a ingresar para saber donde ubicarlo
+        */
         DoubleNode<T> current = head.getNextNode();
         DoubleNode<T> newNode;
         
@@ -69,11 +85,11 @@ public class DoublyLinkedList<T extends Comparable> implements Ilist<T> {
         
 
     }
-
-    @Override
-    /**
+    
+    /*
      * Borrar el primer nodo
      */
+    @Override
     public void delete() throws Exception {
         if (isEmpty()) {
             throw new Exception("Lista ya esta vacía");
@@ -85,6 +101,9 @@ public class DoublyLinkedList<T extends Comparable> implements Ilist<T> {
         }
     }
 
+    /*
+        Borrar el último nodo
+    */
     @Override
     public void deleteLast() throws Exception {
         if (isEmpty()) {
@@ -97,11 +116,17 @@ public class DoublyLinkedList<T extends Comparable> implements Ilist<T> {
         }
     }
 
+    /*
+        Verificar si la lista está vacía
+    */
     @Override
     public boolean isEmpty() {
         return head == null;
     }
 
+    /*
+        Mostrar la los datos de la lista
+    */
     @Override
     public String showData() {
         String data = "";
@@ -113,6 +138,9 @@ public class DoublyLinkedList<T extends Comparable> implements Ilist<T> {
         return data;
     }
 
+    /*
+        Mostrar los datos de la lista desde la cola hacia atrás
+    */
     public String showDataReverse() {
         String data = "";
         DoubleNode<T> current = this.tail;
@@ -138,8 +166,14 @@ public class DoublyLinkedList<T extends Comparable> implements Ilist<T> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /*
+        Verifica si el dato ingresado como parámetro ya existe en la lista
+    */
     @Override
     public boolean checkData(T data) {
+        /*
+            Se recorre la lista y se encuentra un nodo con su mismo dato, retorna verdadero
+        */
         DoubleNode<T> current = this.head;
         while(current != null){
             if(current.getData().equals(data)){
@@ -155,20 +189,35 @@ public class DoublyLinkedList<T extends Comparable> implements Ilist<T> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /*
+        Agregar datos de mayor a menor sin que se repitan datos
+    */
     @Override
     public void addDescendently(T data) throws Exception {
+        /*
+            Se verifica si el dato que se va a ingresar ya está en la lista para retornar una excepción
+        */
         if(checkData(data)){
             throw new Exception("ERROR: El dato ya está ingresado en la lista");
         }else{
+            /*
+                Se verifica si el dato que se va a ingresar es mayor que la cabeza, entonces se ingresa al principio
+            */
             if (isEmpty() || data.compareTo(head.getData()) == 1) {
                 add(data);
                 return;
             }
+            /*
+                Se verifica si el dato que se va a ingresar es menor que la cola, entonces se ingresa al final
+            */
             if (data.compareTo(tail.getData()) == -1) {
                 addLast(data);
                 return;
             }
         
+            /*
+                Se verifica que dato es menor que el dato que se va a ingresar para saber donde ubicarlo
+            */
             DoubleNode<T> current = head.getNextNode();
             DoubleNode<T> newNode;
         
@@ -184,9 +233,22 @@ public class DoublyLinkedList<T extends Comparable> implements Ilist<T> {
 
     @Override
     public void deleteNode(T data) throws Exception {
-        if(isEmpty() || !checkData(data)){
+        /*
+            Se verifica si la lista está vacía para lanzar una excepción
+        */
+        if(isEmpty()){
+            throw new Exception("ERROR: No existe el nodo a borrar");
+            
+        }else if(!checkData(data)){
+            /*
+                También se verifica si no se encuentra el dato para lanzar una excepción
+            */
             throw new Exception("ERROR: No existe el nodo a borrar");
         }else{
+            /*
+                Se recorre la lista para eliminar un nodo en diferentes casos, se elimina el nodo si se encuentra y
+                se asignan los nodos siguientes y los nodos anteriores después de haber eliminado el nodo
+            */
             DoubleNode<T> current = this.head;
             while(current != null){
                 if(current.getData().equals(data) && current == this.head){
@@ -211,9 +273,17 @@ public class DoublyLinkedList<T extends Comparable> implements Ilist<T> {
 
     @Override
     public void addNodeAfter(T data, T newData) throws Exception {
+        /*
+            Se verifica si el dato de referencia está en la lista, si no, se lanza una excepción
+        */
         if(!checkData(data)){
             throw new Exception("No existe el nodo ingresado como referencia");
         }else{
+            /*
+                Se recorre la lista para buscar el nodo de referencia y a ese nodo se le asigna como nodo siguiente
+                el nuevo nodo, al nuevo nodo se le asigna como nodo anterior al nodo de referencia y como nodo siguiente
+                al siguiente del siguiente del nodo de referencia
+            */
             DoubleNode<T> current = this.head;
             DoubleNode<T> newNode = new DoubleNode<>(newData);
             while(current != null){
