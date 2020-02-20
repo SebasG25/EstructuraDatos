@@ -192,7 +192,7 @@ public class DoublyLinkedList<T> {
                 /*
                     Se verifica si ese estudiante aprobó la asignatura para luego agregarlo a la nueva lista
                 */
-                if(current.getFinalGrade() > 3){
+                if(current.getFinalGrade() >= 3){
                     aprobados.add(current);
                 }
                 /*
