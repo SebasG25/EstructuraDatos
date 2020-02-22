@@ -21,9 +21,9 @@ public class Video<T> {
         setNextVideo(nv);
     }
     
-    public Video(T name, T id){
+    public Video(T name){
        setName(name);
-       setId(id);
+       //setId(id);
        setPreviousVideo(null);
        setNextVideo(null);
     }
