@@ -44,35 +44,35 @@ public class CircularSinglyLinkedList<T extends Comparable> implements Ilist<T> 
 
     @Override
     public void addOrdered(T d) {
-/*
+        /*
             Se verifica si el dato que se va a ingresar es menor que la cabeza, entonces se ingresa al principio
         */
-        if (isEmpty() || d.compareTo(head.getData()) == -1) {
+        if (isEmpty() || d.compareTo(head.getData()) == 1) {
             add(d);
             return;
         }
         /*
             Se verifica si el dato que se va a ingresar es mayor que la cola, entonces se ingresa al final
         */
-        if (d.compareTo(tail.getData()) == 1) {
+        if (d.compareTo(tail.getData()) == -1) {
             addLast(d);
             return;
         }
         /*
-            Se verifica que dato es mayor que el dato que se va a ingresar para saber donde ubicarlo
+            Se verifica que dato es menor que el dato que se va a ingresar para saber donde ubicarlo
         */
         Node<T> current = head.getNextNode();
         Node<T> newNode;
+        Node<T> tempNode = current.getNextNode();
         
-        while (current.getData().compareTo(d)==-1) {            
-            Node<T> previousNode = current;
+        while (tempNode.getData().compareTo(d)==1) {      
             current=current.getNextNode();
+            tempNode = tempNode.getNextNode();
         }
         
         newNode = new Node<>(d);
-        newNode.setNextNode(current);
-        current.getPreviousNode().setNextNode(newNode);
-        current.setPreviousNode(newNode);
+        newNode.setNextNode(tempNode);
+        current.setNextNode(newNode);
     }
     
     public String showData(T data) throws Exception

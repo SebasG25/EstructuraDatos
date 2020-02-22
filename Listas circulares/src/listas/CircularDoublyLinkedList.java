@@ -5,11 +5,13 @@
  */
 package listas;
 
+import java.util.Set;
+
 /**
  *
  * @author s103e28
  */
-public class CircularDoublyLinkedList<T> implements Ilist<T> {
+public class CircularDoublyLinkedList<T extends Comparable> implements Ilist<T> {
 
     DoubleNode<T> head;
 
@@ -48,13 +50,38 @@ public class CircularDoublyLinkedList<T> implements Ilist<T> {
             head.setPreviousNode(newNode);
             //head=newNode;
             //¿Se puede refactorizar?
-
         }
     }
 
     @Override
     public void addOrdered(T d) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        /*
+            Se verifica si el dato que se va a ingresar es menor que la cabeza, entonces se ingresa al principio
+        */
+        if (isEmpty() || d.compareTo(head.getData()) == -1) {
+            add(d);
+            return;
+        }
+        /*
+            Se verifica si el dato que se va a ingresar es mayor que la cola, entonces se ingresa al final
+        */
+        if (d.compareTo(head.getPreviousNode().getData()) == 1) {
+            addLast(d);
+            return;
+        }
+        /*
+            Se verifica que dato es menor que el dato que se va a ingresar para saber donde ubicarlo
+        */
+        DoubleNode<T> current = head.getNextNode();
+        DoubleNode<T> newNode;
+        
+        while (current.getData().compareTo(d)==-1) {            
+            current=current.getNextNode();
+        }
+        
+        newNode = new DoubleNode<>(d,current.getPreviousNode(),current);
+        current.getPreviousNode().setNextNode(newNode);
+        current.setPreviousNode(newNode);
     }
 
     @Override
@@ -90,7 +117,35 @@ public class CircularDoublyLinkedList<T> implements Ilist<T> {
         } while (current != head);
         return data;
     }
-
+    
+    @Override
+    public boolean checkData(T data) {
+        /*
+            Se recorre la lista y se encuentra un nodo con su mismo dato, retorna verdadero
+        */
+        DoubleNode<T> current = this.head;
+        do{
+            if(current.getData().equals(data)){
+                return true;
+            }
+            current = current.getNextNode();
+        }while(current != this.head);
+        return false;
+    }
+    
+    public CircularDoublyLinkedList<T> splitList(T data) throws Exception{
+        if(isEmpty() || !checkData(data))
+        {
+            throw new Exception("\033[31mERROR: \033[30mNo se pudo encontrar el dato de referencia");
+        }else{
+            DoubleNode<T> current = this.head;
+            do{
+                
+            }while(current != this.head);
+            return this;
+        }
+    }
+    
     @Override
     public void showMajorData() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -106,10 +161,7 @@ public class CircularDoublyLinkedList<T> implements Ilist<T> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public boolean checkData(T data) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
     @Override
     public void addLastNoRepeated(T data) throws Exception {
