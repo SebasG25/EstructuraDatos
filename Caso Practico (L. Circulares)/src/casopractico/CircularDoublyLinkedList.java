@@ -13,44 +13,36 @@ import java.util.Scanner;
  */
 public class CircularDoublyLinkedList<T> {
      Video<T> head;
+     private int totalVideos = 0;
 
     public CircularDoublyLinkedList() {
         head = null;
     }
 
     public void add(T name) {
-        Video<T> newVideo = new Video<>(name);
-        if (isEmpty()) {
-            head = newVideo;
-            newVideo.setNextVideo(newVideo);
-            newVideo.setPreviousVideo(newVideo);
-        } else {
-            newVideo.setPreviousVideo(head.getPreviousVideo());
-            newVideo.setNextVideo(head);
-            head.setPreviousVideo(newVideo);
-            head = newVideo;
-            head.getPreviousVideo().setNextVideo(head);
-
-        }
-    }
-
-    public void addLast(T name) {
-        Video<T> newVideo = new Video<>(name);
-        if (isEmpty()) {
-            head = newVideo;
-            newVideo.setNextVideo(newVideo);
-            newVideo.setPreviousVideo(newVideo);
-        } else {
-            newVideo.setPreviousVideo(head.getPreviousVideo());
-            newVideo.setNextVideo(head);
-            head.getPreviousVideo().setNextVideo(newVideo);
-            head.setPreviousVideo(newVideo);
+        if(checkData(name)){
+            System.out.println("\033[31mERROR: \033[30mEste video ya está en la lista de reproducción");
+        }else{
+            Video<T> newVideo = new Video<>(name);
+            if (isEmpty()) {
+                head = newVideo;
+                newVideo.setNextVideo(newVideo);
+                newVideo.setPreviousVideo(newVideo);
+                totalVideos++;
+            } else {
+                newVideo.setPreviousVideo(head.getPreviousVideo());
+                newVideo.setNextVideo(head);
+                head.setPreviousVideo(newVideo);
+                head = newVideo;
+                head.getPreviousVideo().setNextVideo(head);
+                totalVideos++;
+            }
         }
     }
 
     public void delete() throws Exception {
         if (isEmpty()) {
-            throw new Exception("No existen datos por borrar...");
+            throw new Exception("\033[31mERROR: \033[30mNo existen datos por borrar...");
         } else if (head == head.getPreviousVideo()) {
             head = null;
         } else {
@@ -62,18 +54,25 @@ public class CircularDoublyLinkedList<T> {
     
     public void deleteVideo(T videoName)throws Exception{
         if (isEmpty() || !checkData(videoName)) {
-            throw new Exception("No se encontró el video ingresado");
+            throw new Exception("\033[31mERROR: \033[30mNo se encontró el video ingresado");
         } else {
             Video<T> current = this.head;
             do{ 
-                if(checkData(videoName)){
-                    System.out.println("ENCONTRADO");
-//                    if(current.getName() == head.getName() && head.getName() == head.getPreviousVideo().getName()){
-//                        head = null;
-//                    }else{
-//                       current.getPreviousVideo().setNextVideo(current.getNextVideo());
-//                       current.getNextVideo().setPreviousVideo(current.getPreviousVideo()); 
-//                    }
+                if(current.getName().toString().equalsIgnoreCase(videoName.toString())){
+                    if(getTotalVideos() == 1){
+                        head = null;
+                        totalVideos--;
+                        break;
+                    }else if(head.getName().toString().equalsIgnoreCase(videoName.toString())){
+                       head.getPreviousVideo().setNextVideo(head.getNextVideo());
+                       head.getNextVideo().setPreviousVideo(head.getPreviousVideo()); 
+                       head = head.getNextVideo();
+                       totalVideos--;
+                    }else if(current.getName().toString().equalsIgnoreCase(videoName.toString())){
+                        current.getPreviousVideo().setNextVideo(current.getNextVideo());
+                        current.getNextVideo().setPreviousVideo(current.getPreviousVideo());
+                        totalVideos--;
+                    }
                 }
                 current = current.getNextVideo();
             }while(current != this.head);
@@ -86,17 +85,18 @@ public class CircularDoublyLinkedList<T> {
         } else {
             Video<T> current = this.head;
             do{
-                if(checkData(videoName)){
+                if(current.getName().toString().equalsIgnoreCase(videoName.toString())){
                     current.setName(newName);
                     System.out.println("\033[31mCanción actualizada con éxito");
                 }
+                current = current.getNextVideo();
             }while(current != this.head);
         }
     }
     
     public void play() throws InterruptedException{
         if(isEmpty()){
-            System.out.println("\033[31mNo hay videos en la lista para reproducir");
+            System.out.println("\033[31mERROR: \033[30mNo hay videos en la lista para reproducir");
         }else{
             Video<T> current = this.head;
             do {
@@ -131,7 +131,7 @@ public class CircularDoublyLinkedList<T> {
     public String showData() {
         String data = "\n";
         if(isEmpty()){
-            data = "No hay videos en la lista";
+            data = "\033[31mNo hay videos en la lista";
         }else{
             int cont = 1;
             Video<T> current = this.head;
@@ -145,21 +145,29 @@ public class CircularDoublyLinkedList<T> {
         return data;
     }
     
-    public boolean checkData(T name) throws Exception{
+    public boolean checkData(T name) {
         /*
             Se recorre la lista y se encuentra un nodo con su mismo dato, retorna verdadero
         */
         if(isEmpty()){
-            throw new Exception("\033[31mError: \033[30mNo hay videos en la lista");
+            return false;
         }else{
             Video<T> current = this.head;
-            do{ 
-                if(current.getName().toString().equalsIgnoreCase(name.toString())){
-                    return true;
-                }
-                current = current.getNextVideo();
-            }while(current != this.head);
-            return false;
+        do{ 
+            if(current.getName().toString().equalsIgnoreCase(name.toString())){
+                return true;
+            }
+            current = current.getNextVideo();
+        }while(current != this.head);
+        return false;
+        
         }
+    }
+
+    /**
+     * @return the totalVideos
+     */
+    public int getTotalVideos() {
+        return totalVideos;
     }
 }

@@ -62,8 +62,12 @@ public class CasoPractico {
     
     public static void addVideo(CircularDoublyLinkedList lista){
         Scanner entrada = new Scanner(System.in);
-        System.out.print("Ingrese nombre del video: ");
-        String videoName = entrada.nextLine();
+        String videoName = "";
+         while(videoName.isEmpty()){
+            System.out.print("Ingrese nombre del video: ");
+            videoName = entrada.nextLine();
+            videoName = videoName.trim();
+        }
         lista.add(videoName);
         System.out.println();
     }
@@ -76,7 +80,7 @@ public class CasoPractico {
             lista.deleteVideo(videoName);
             System.out.println("\033[31mVideo eliminado con éxito");
         } catch (Exception e) {
-            System.out.println("\033[31mERROR: \033[30m" + e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
     
@@ -114,7 +118,12 @@ public class CasoPractico {
     }
     
     public static void showList(CircularDoublyLinkedList lista){
-        System.out.println("\033[31m\nLista de reproducción: \033[30m" + lista.showData());
+        if(!lista.isEmpty()){
+           System.out.println("\033[31m\nLista de reproducción con un total de " + lista.getTotalVideos() + " videos: \033[30m" + lista.showData()); 
+        }else{
+            System.out.println("\033[31mLa lista está vacía");
+        }
+            
     }
 }
     
