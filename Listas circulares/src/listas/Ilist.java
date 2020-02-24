@@ -27,7 +27,7 @@ public interface Ilist<T> {
     *Agregar un dato ordenado de menor a mayor
     *@param el dato
      */
-    public void addOrdered(T data);
+    public void addOrdered(T data) throws Exception;
 
     /*
     *Borrar un dato al inicio

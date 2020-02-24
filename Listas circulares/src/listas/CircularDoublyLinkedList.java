@@ -54,34 +54,38 @@ public class CircularDoublyLinkedList<T extends Comparable> implements Ilist<T> 
     }
 
     @Override
-    public void addOrdered(T d) {
-        /*
-            Se verifica si el dato que se va a ingresar es menor que la cabeza, entonces se ingresa al principio
-        */
-        if (isEmpty() || d.compareTo(head.getData()) == -1) {
-            add(d);
-            return;
-        }
-        /*
-            Se verifica si el dato que se va a ingresar es mayor que la cola, entonces se ingresa al final
-        */
-        if (d.compareTo(head.getPreviousNode().getData()) == 1) {
-            addLast(d);
-            return;
-        }
-        /*
-            Se verifica que dato es menor que el dato que se va a ingresar para saber donde ubicarlo
-        */
-        DoubleNode<T> current = head.getNextNode();
-        DoubleNode<T> newNode;
+    public void addOrdered(T d) throws Exception{
+        if(!isEmpty() && checkData(d)){
+            throw new Exception("\033[31mERROR: \033[30mYa existe el dato ingresado");
+        }else{
+            /*
+                Se verifica si el dato que se va a ingresar es menor que la cabeza, entonces se ingresa al principio
+            */
+            if (isEmpty() || d.compareTo(head.getData()) == -1) {
+                add(d);
+                return;
+            }
+            /*
+                Se verifica si el dato que se va a ingresar es mayor que la cola, entonces se ingresa al final
+            */
+            if (d.compareTo(head.getPreviousNode().getData()) == 1) {
+                addLast(d);
+                return;
+            }
+            /*
+                Se verifica que dato es menor que el dato que se va a ingresar para saber donde ubicarlo
+            */
+            DoubleNode<T> current = head.getNextNode();
+            DoubleNode<T> newNode;
         
-        while (current.getData().compareTo(d)==-1) {            
-            current=current.getNextNode();
-        }
+            while (current.getData().compareTo(d)==-1) {            
+                current=current.getNextNode();
+            }
         
-        newNode = new DoubleNode<>(d,current.getPreviousNode(),current);
-        current.getPreviousNode().setNextNode(newNode);
-        current.setPreviousNode(newNode);
+            newNode = new DoubleNode<>(d,current.getPreviousNode(),current);
+            current.getPreviousNode().setNextNode(newNode);
+            current.setPreviousNode(newNode);
+        }
     }
 
     @Override
@@ -139,11 +143,39 @@ public class CircularDoublyLinkedList<T extends Comparable> implements Ilist<T> 
             throw new Exception("\033[31mERROR: \033[30mNo se pudo encontrar el dato de referencia");
         }else{
             DoubleNode<T> current = this.head;
+            CircularDoublyLinkedList<T> miOtraLista = new CircularDoublyLinkedList<>();
             do{
-                
+                if(current.getData().equals(data) && current == this.head){
+                    return this;
+                }else if(current.getData().equals(data)){
+                    do{
+                        if(current.getData().equals(data)){
+                            miOtraLista.add(current.getData());
+                            current = current.getNextNode();
+                        }else{
+                            miOtraLista.addLast(current.getData());
+                            current = current.getNextNode();
+                        }
+                        
+                    }while(current != this.head);
+                    deleteFromNode(data);
+                    return miOtraLista;
+                }
+                current = current.getNextNode();
             }while(current != this.head);
-            return this;
+            return miOtraLista;
         }
+    }
+    
+    public void deleteFromNode(T data){
+        DoubleNode<T> current = this.head;
+        do{
+            if(current.getData().equals(data)){
+                current.getPreviousNode().setNextNode(this.head);
+                this.head.setPreviousNode(current.getPreviousNode());
+            }
+            current = current.getNextNode();
+        }while(current != this.head);
     }
     
     @Override

@@ -5,7 +5,6 @@
  */
 package listas;
 
-import com.sun.org.apache.bcel.internal.generic.BREAKPOINT;
 
 /**
  *
@@ -43,36 +42,40 @@ public class CircularSinglyLinkedList<T extends Comparable> implements Ilist<T> 
     }
 
     @Override
-    public void addOrdered(T d) {
-        /*
-            Se verifica si el dato que se va a ingresar es menor que la cabeza, entonces se ingresa al principio
-        */
-        if (isEmpty() || d.compareTo(head.getData()) == 1) {
-            add(d);
-            return;
-        }
-        /*
-            Se verifica si el dato que se va a ingresar es mayor que la cola, entonces se ingresa al final
-        */
-        if (d.compareTo(tail.getData()) == -1) {
-            addLast(d);
-            return;
-        }
-        /*
-            Se verifica que dato es menor que el dato que se va a ingresar para saber donde ubicarlo
-        */
-        Node<T> current = head.getNextNode();
-        Node<T> newNode;
-        Node<T> tempNode = current.getNextNode();
+    public void addOrdered(T d) throws Exception{
+        if(!isEmpty() && checkData(d)){
+            throw new Exception("\033[31mERROR: \033[30mYa existe el dato ingresado");
+        }else{
+            /*
+                Se verifica si el dato que se va a ingresar es menor que la cabeza, entonces se ingresa al principio
+            */
+            if (isEmpty() || d.compareTo(head.getData()) == 1) {
+                add(d);
+                return;
+            }
+            /*
+                Se verifica si el dato que se va a ingresar es mayor que la cola, entonces se ingresa al final
+            */
+            if (d.compareTo(tail.getData()) == -1) {
+                addLast(d);
+                return;
+            }
+            /*
+                Se verifica que dato es menor que el dato que se va a ingresar para saber donde ubicarlo
+            */
+            Node<T> current = head.getNextNode();
+            Node<T> newNode;
+            Node<T> tempNode = current.getNextNode();
         
-        while (tempNode.getData().compareTo(d)==1) {      
-            current=current.getNextNode();
-            tempNode = tempNode.getNextNode();
-        }
+            while (tempNode.getData().compareTo(d)==1) {      
+                current=current.getNextNode();
+                tempNode = tempNode.getNextNode();
+            }
         
-        newNode = new Node<>(d);
-        newNode.setNextNode(tempNode);
-        current.setNextNode(newNode);
+            newNode = new Node<>(d);
+            newNode.setNextNode(tempNode);
+            current.setNextNode(newNode);
+        }
     }
     
     public String showData(T data) throws Exception
@@ -142,7 +145,7 @@ public class CircularSinglyLinkedList<T extends Comparable> implements Ilist<T> 
         do{
             data = data + current.getData() + " ";
             current = current.getNextNode();
-        }while (current != head);
+        }while (current != this.head);
         return data;
     }
 

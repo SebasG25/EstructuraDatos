@@ -29,17 +29,21 @@ public class Listas {
         miLista.add(33);
         miLista.add(44);
         miLista.add(55);
-        
         miLista2.add(66);
         miLista2.add(77);
         
-        miLista3.addOrdered(1);
-        miLista3.addOrdered(2);
-        miLista3.addOrdered(3);
-        miLista3.addOrdered(4);
-        miLista3.addOrdered(99);
-        
         System.out.println("Métodos \033[31mLISTAS CIRCULARES SIMPLES");
+        
+        try {
+            miLista3.addOrdered(1);
+            miLista3.addOrdered(2);
+            miLista3.addOrdered(3);
+            miLista3.addOrdered(4);
+            miLista3.addOrdered(99); 
+            miLista3.addOrdered(99);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         
         System.out.println("\033[31mTercera lista ordenada:\033[30m " + miLista3.showData());
         
@@ -49,6 +53,8 @@ public class Listas {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        
+        System.out.println("\033[31mSegunda lista: \033[30m" + miLista2.showData());
         
         try {
             System.out.println("\033[31mPrimer lista unida con la segunda lista: \033[30m" + miLista.joinList(miLista2).showData());
@@ -63,11 +69,19 @@ public class Listas {
         CircularDoublyLinkedList<Integer> miListaDoble = new CircularDoublyLinkedList<>();
         CircularDoublyLinkedList<Integer> miListaDoble2 = new CircularDoublyLinkedList<>();
         
-        miListaDoble2.addOrdered(11);
-        miListaDoble2.addOrdered(44);
-        miListaDoble2.addOrdered(22);
-        miListaDoble2.addOrdered(55);
-        miListaDoble2.addOrdered(33);
+        try {
+            miListaDoble2.addOrdered(11);
+            miListaDoble2.addOrdered(44);
+            miListaDoble2.addOrdered(22);
+            miListaDoble2.addOrdered(55);
+            miListaDoble2.addOrdered(33);
+            miListaDoble2.addOrdered(33);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
+        System.out.println("\033[31m" + miListaDoble2.checkData(55));
+        System.out.println("\033[31m" + miListaDoble2.checkData(56));
         
         System.out.println("\033[31mMi segunda lista doble ordenada: \033[30m" + miListaDoble2.showData());
         
@@ -81,6 +95,8 @@ public class Listas {
         
         try {
             System.out.println("\033[31mMi lista separada: \033[30m" + miListaDoble.splitList(33).showData());
+            System.out.println("\033[31mMi lista separada: \033[30m" + miListaDoble.splitList(34).showData());
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
