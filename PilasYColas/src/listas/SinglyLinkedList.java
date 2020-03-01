@@ -7,7 +7,7 @@ package listas;
 
 /**
  *
- * @author s208e19
+ * @author Sebastián Guzmán
  */
 public class SinglyLinkedList<T extends Number & Comparable> implements Ilist<T> {
 

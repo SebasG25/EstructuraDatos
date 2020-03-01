@@ -7,7 +7,7 @@ package listas;
 
 /**
  *
- * @author s103e28
+ * @author Sebastián Guzmán
  */
 public class LinkedStack<E> implements IStack<E> {
 

@@ -7,7 +7,7 @@ package listas;
 
 /**
  *
- * @author s103e28
+ * @author Sebastián Guzmán
  */
 public class CircularSinglyLinkedList<T> implements Ilist<T> {
 

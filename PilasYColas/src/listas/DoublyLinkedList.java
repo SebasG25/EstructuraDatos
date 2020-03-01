@@ -7,7 +7,7 @@ package listas;
 
 /**
  *
- * @author s103e28
+ * @author Sebastián Guzmán
  */
 public class DoublyLinkedList<T extends Number & Comparable> implements Ilist<T> {
 

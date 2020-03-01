@@ -12,7 +12,7 @@ import java.util.Stack;
 
 /**
  *
- * @author s208e19
+ * @author Sebastián Guzmán
  */
 public class Listas {
 

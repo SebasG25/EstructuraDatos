@@ -7,7 +7,7 @@ package listas;
 
 /**
  *
- * @author niwdeyen
+ * @author Sebastián Guzmán
  */
 public class Validate {
 

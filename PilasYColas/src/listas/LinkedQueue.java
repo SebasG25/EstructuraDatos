@@ -11,7 +11,7 @@ import java.util.Set;
 
 /**
  *
- * @author Sebastian
+ * @author Sebastián Guzmán
  */
 public class LinkedQueue<E> implements IQueue<E> {
 
