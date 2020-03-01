@@ -68,12 +68,13 @@ public class LinkedStack<E> implements IStack<E> {
         Node<E> current = this.top;
         int posicion = 1;
         while(current != null){
-            if(current == this.top || current == o){
+            if(this.top.getData().equals(o)){
                 return posicion;
-            }else if(current == o){
+            }else if(current.getData().equals(o)){
                 return posicion;
             }else{
                 current = current.getNextNode();
+                posicion++;
             }
         }
         return -1;

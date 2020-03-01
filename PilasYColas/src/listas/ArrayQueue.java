@@ -79,4 +79,9 @@ public class ArrayQueue implements IQueue<Object> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public boolean isEmpty() {
+        return head == tail && totalN == 0;
+    }
+
 }

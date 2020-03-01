@@ -21,93 +21,84 @@ public class Listas {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-
+        
         Validate exp = new Validate();
+        
         System.out.println(exp.checkParanthesisBalanced("{[(5+5)}]"));
         System.out.println(exp.checkParanthesisBalanced("{2[1-(5+5)/5]*4}"));
-
-        ConvertBase data = new ConvertBase();
-        System.out.println(data.toBinary(101));
-        
-        ConvertBase data2 = new ConvertBase();
-        System.out.println(data2.toOctal(101));
-//
-//        ArrayQueue miCola = new ArrayQueue(5);
-//        try {
-//            System.out.println(miCola.add("Hola"));
-//            miCola.add(66);
-//            miCola.add(77);
-//            miCola.add(88);
-//            miCola.add(99);
-//            miCola.remove();
-//            miCola.remove();
-//            miCola.remove();
-//            miCola.remove();
-//            miCola.remove();
-//            miCola.add(101);
-//            miCola.add(102);
-//            miCola.add(103);
-//            miCola.remove();
-//            miCola.add(104);
-//            miCola.add(105);
-//            miCola.add(106);
-//            miCola.add(107);
-//
-//        } catch (Exception e) {
-//            System.out.println(e.getMessage());
-//        }
-//
-//        System.out.println("");
-//
-//        LinkedStack<Integer> duracell = new LinkedStack<>();
-//        duracell.push(99);
-//        duracell.push(88);
-//        duracell.push(77);
-//        duracell.push(66);
-//        duracell.push(55);
-//
-//        System.out.println("El dato eliminado fue:" + duracell.pop());
-//        System.out.println("El dato eliminado fue:" + duracell.pop());
-//        System.out.println("El dato eliminado fue:" + duracell.pop());
-//        System.out.println("El dato eliminado fue:" + duracell.pop());
-//        System.out.println("El dato eliminado fue:" + duracell.pop());
-//        System.out.println("El dato eliminado fue:" + duracell.pop());
-//        System.out.println("El dato eliminado fue:" + duracell.pop());
-//        System.out.println("El dato eliminado fue:" + duracell.pop());
-//        System.out.println("El dato eliminado fue:" + duracell.pop());
-//
-//        System.out.println("");
-//
-//        ArrayStack varta = new ArrayStack(5);
-//        varta.push(77);
-//        varta.push(88);
-//        varta.push(99);
-//        varta.push(101);
-//        varta.push(101);
-//        varta.push(999);
-//        varta.push(888);
-//        varta.push(777);
-//        varta.push(666);
-//        varta.push(555);
-//        varta.pop();
-//        varta.pop();
-//        varta.pop();
-//        varta.pop();
-//        varta.pop();
-//        varta.pop();
-//        varta.pop();
-//        varta.pop();
-        //       System.out.println(varta.pop());
         System.out.println("");
-//        Stack<Integer> varta = new Stack<>();
-//        varta.push(99);
-//        varta.push(88);
-//        varta.push(77);
-//        varta.push(66);
-//        varta.push(55);
-
-        //  System.out.println("Siguiente dato a salir: " + varta.search(9878));
-
+        
+        ConvertBase data = new ConvertBase();
+        try {
+            System.out.println(data.toBase("16", 13290000));
+            System.out.println(data.toBase("8", 2002));
+            System.out.println(data.toBase("3", 150));
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        LinkedQueue<Object> cola = new LinkedQueue<>();
+        System.out.println("");
+        System.out.println("\033[031madd: \033[030m" + cola.add(1));
+        System.out.println("\033[031madd: \033[030m" + cola.add(2));
+        System.out.println("\033[031moffer: \033[030m" + cola.offer(3));
+        System.out.println("\033[031moffer: \033[030m" + cola.offer(4));
+        System.out.println("");
+        
+        try {
+            System.out.println("\033[031mremove: \033[030m" + cola.remove());
+            System.out.println("\033[031mremove: \033[030m" + cola.remove());
+            System.out.println("\033[031mremove: \033[030m" + cola.remove());
+            System.out.println("\033[031mremove: \033[030m" + cola.remove());
+            System.out.println("\033[031mremove: \033[030m" + cola.remove());
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        cola.add(1);
+        cola.add(2);
+        cola.add(3);
+        cola.add(4);
+        
+        System.out.println("");
+        System.out.println("\033[031mpoll: \033[030m" + cola.poll());
+        System.out.println("\033[031mpoll: \033[030m" + cola.poll());
+        System.out.println("\033[031mpoll: \033[030m" + cola.poll());
+        System.out.println("\033[031mpoll: \033[030m" + cola.poll());
+        System.out.println("\033[031mpoll: \033[030m" + cola.poll());
+        System.out.println("");
+        
+        cola.add(1);
+        cola.add(2);
+        cola.add(3);
+        cola.add(4);
+        
+        try {
+            System.out.println("\033[031melement: \033[030m" + cola.element());
+            cola.remove();
+            cola.remove();
+            cola.remove();
+            cola.remove();
+            System.out.println("\033[031melement: \033[030m" + cola.element());
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        System.out.println("");
+        cola.add(1);
+        cola.add(2);
+        System.out.println("\033[031mpeek: \033[030m" + cola.peek());
+        try {
+            cola.remove();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        System.out.println("\033[031mpeek: \033[030m" + cola.peek());
+        try {
+            cola.remove();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        System.out.println("\033[031mpeek: \033[030m" + cola.peek());
     }
-
 }

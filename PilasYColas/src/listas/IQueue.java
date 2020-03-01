@@ -22,4 +22,6 @@ public interface IQueue<E> {
     public E element() throws Exception;
 
     public E peek();
+    
+    public boolean isEmpty();
 }
