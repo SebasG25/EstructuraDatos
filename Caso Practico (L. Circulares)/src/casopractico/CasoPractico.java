@@ -13,7 +13,7 @@ import java.util.InputMismatchException;
  *
  * @author Sebastián Guzmán
  */
-public class CasoPractico {
+public class CasoPracticos {
 
     
     /**
