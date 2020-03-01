@@ -24,8 +24,8 @@ public class Listas {
         
         Validate exp = new Validate();
         
-        System.out.println(exp.checkParanthesisBalanced("{[(5+5)}]"));
-        System.out.println(exp.checkParanthesisBalanced("{2[1-(5+5)/5]*4}"));
+        System.out.println("\033[031mBalanceado: \033[030m" + exp.checkParanthesisBalanced("{[(5+5)}]"));
+        System.out.println("\033[031mBalanceado: \033[030m" + exp.checkParanthesisBalanced("{2[1-(5+5)/5]*4}"));
         System.out.println("");
         
         ConvertBase data = new ConvertBase();
