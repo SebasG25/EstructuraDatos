@@ -29,7 +29,7 @@ public class Listas {
 
         ArrayQueue miCola = new ArrayQueue(5);
         try {
-            miCola.add(55);
+            System.out.println(miCola.add("Hola"));
             miCola.add(66);
             miCola.add(77);
             miCola.add(88);

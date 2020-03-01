@@ -7,7 +7,7 @@ package listas;
 
 /**
  *
- * @author niwdeyen
+ * @author Sebastián Guzmán
  */
 public class ArrayQueue implements IQueue<Object> {
 
@@ -34,7 +34,7 @@ public class ArrayQueue implements IQueue<Object> {
             throw new Exception("Cola llena");
         } else if (tail == max && head != 0) {
             ArrayQ[0] = e;
-            tail=1;
+            tail = 1;
         } else {
             ArrayQ[tail++] = e;
         }
@@ -55,7 +55,7 @@ public class ArrayQueue implements IQueue<Object> {
         } else if (head == max) {
             dataTemp = ArrayQ[0];
             ArrayQ[0] = null;
-            head = 1;            
+            head = 1;
         } else {
             dataTemp = ArrayQ[head];
             ArrayQ[head++] = null;
