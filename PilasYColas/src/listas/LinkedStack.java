@@ -65,7 +65,22 @@ public class LinkedStack<E> implements IStack<E> {
 
     @Override
     public int search(E o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Node<E> current = this.top;
+        int posicion = 1;
+        while(current != null){
+            if(current == this.top || current == o){
+                return posicion;
+            }else if(current == o){
+                return posicion;
+            }else{
+                current = current.getNextNode();
+            }
+        }
+        return -1;
+    }
+    
+    public Node<E> getTop(){
+        return this.top;
     }
 
 }
