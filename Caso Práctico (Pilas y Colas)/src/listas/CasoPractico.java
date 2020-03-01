@@ -14,7 +14,7 @@ import java.util.Stack;
  *
  * @author s208e19
  */
-public class Listas {
+public class CasoPractico {
 
     /**
      * @param args the command line arguments
