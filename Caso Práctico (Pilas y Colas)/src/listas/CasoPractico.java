@@ -21,6 +21,19 @@ public class CasoPractico {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        ArrayStack arregloPilas = new ArrayStack(8);
+        
+        System.out.println(arregloPilas.push1(2));
+        System.out.println(arregloPilas.push1(3));
+        System.out.println(arregloPilas.push1(2));
+        System.out.println(arregloPilas.push1(3));
+        System.out.println(arregloPilas.push1(4));
+        System.out.println(arregloPilas.push1(5));
+        System.out.println(arregloPilas.push2(4));
+        System.out.println(arregloPilas.push2(8));
+        System.out.println(arregloPilas.push1(8));
+        
+        System.out.println(arregloPilas.isFull());
         
     }
 }

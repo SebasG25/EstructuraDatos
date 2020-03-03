@@ -7,23 +7,27 @@ package listas;
 
 /**
  *
- * @author s103e28
+ * @author Sebastián Guzmán
  */
 public class ArrayStack implements IStack<Object> {
 
     private Object[] data;
     private int max;
+    private int min;
     private int top;
+    private int tail;
 
     public ArrayStack(int n) {
         max = n;
+        min = -1;
         top = 0;
+        tail = n - 1;
         data = new Object[n];
     }
 
     @Override
     public boolean empty() {
-        return top == 0;
+        return top == 0 && tail == max-1;
     }
 
     @Override
@@ -41,6 +45,20 @@ public class ArrayStack implements IStack<Object> {
             return dataTemp;
         }
     }
+    
+    public Object pop1(){
+        if(!isFull()){
+            return null;
+        }else if(top == 0){
+            return null;
+        }else if(tail == max - 1){
+            return null;
+        }
+    }
+    
+    public Object pop2(){
+        
+    }
 
     @Override
     public Object push(Object item) {
@@ -51,6 +69,36 @@ public class ArrayStack implements IStack<Object> {
             data[top++] = item;
             return item;
         }
+    }
+
+    public Object push1(Object item) {
+        if (top == tail && data[top] != null) {
+            return null;
+        }else{
+            data[top++] = item;
+            return item;
+        }
+    }
+    
+    public Object push2(Object item) {
+        if (top == tail && data[top] != null) {
+            return null;
+        }else{
+            data[tail--] = item;
+            return item;
+        }
+    }
+
+    public boolean isFull() {
+//        if(top == max){
+//            return true;
+//        }else if(tail == min){
+//            return true;
+//        }else if(top == tail && data[top] != null){
+//            return true;
+//        }
+//        return false;
+        return top - tail == 1;
     }
 
     @Override
