@@ -27,7 +27,7 @@ public class ArrayStack implements IStack<Object> {
 
     @Override
     public boolean empty() {
-        return top == 0 && tail == max-1;
+        return top == 0 && tail == max - 1;
     }
 
     @Override
@@ -45,19 +45,29 @@ public class ArrayStack implements IStack<Object> {
             return dataTemp;
         }
     }
-    
-    public Object pop1(){
-        if(!isFull()){
+
+    public Object pop1() {
+        if (empty()) {
             return null;
-        }else if(top == 0){
+        } else if (top == 0) {
             return null;
-        }else if(tail == max - 1){
-            return null;
+        } else {
+            Object dataTemp = data[--top];
+            data[top] = null;
+            return dataTemp;
         }
     }
-    
-    public Object pop2(){
-        
+
+    public Object pop2() {
+        if (empty()) {
+            return null;
+        } else if (tail == max - 1) {
+            return null;
+        } else {
+            Object dataTemp = data[++tail];
+            data[tail] = null;
+            return dataTemp;
+        }
     }
 
     @Override
@@ -72,18 +82,22 @@ public class ArrayStack implements IStack<Object> {
     }
 
     public Object push1(Object item) {
-        if (top == tail && data[top] != null) {
+        if (isFull()) {
             return null;
-        }else{
+        } else if (top == tail && data[top] != null) {
+            return null;
+        } else {
             data[top++] = item;
             return item;
         }
     }
-    
+
     public Object push2(Object item) {
-        if (top == tail && data[top] != null) {
+        if (isFull()) {
             return null;
-        }else{
+        } else if (top == tail && data[top] != null) {
+            return null;
+        } else {
             data[tail--] = item;
             return item;
         }

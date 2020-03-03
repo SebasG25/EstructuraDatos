@@ -55,12 +55,28 @@ public class LinkedStack<E> implements IStack<E> {
             return dataTemp;
         }
     }
+    
+    public E pop1(){
+        
+    }
+    
+    public E pop2(){
+        
+    }
 
     @Override
     public E push(E item) {
         sizeStack++;
         top = new Node<E>(item, top);
         return item;
+    }
+    
+    public E push1(E item){
+        
+    }
+    
+    public E push2(E item){
+        
     }
 
     @Override
