@@ -29,27 +29,37 @@ public class EstructurasNoLineales {
         maxData.ExtractMax();
         System.out.println(maxData.getDataHeap());
 
-        BinarySearchTree pino = new BinarySearchTree(8);
+        BinarySearchTree test = new BinarySearchTree(10);
         try {
-            pino.Add(3);
-            pino.Add(9);
-            pino.Add(2);
-            pino.Add(3);
-            pino.Add(7);
-            pino.Add(1);
-            pino.Add(4);
+            test.Add(5);
+            test.Add(3);
+            test.Add(8);
+            test.Add(20);
+            test.Add(7);
+            test.Add(18);
+            test.Add(25);
+            test.Add(23);
+            test.Add(30);
+            test.Add(21);
+            test.Add(24);
             System.out.print("Inorden: ");
-            pino.InOrden(); 
+            test.InOrden(); 
             System.out.println("");
             System.out.print("PreOrden: ");
-            pino.PreOrden();
+            test.PreOrden();
             System.out.println("");
             System.out.print("PosOrden: ");
-            pino.PostOrden();
+            test.PostOrden();
             System.out.println("");
-//            pino.Delete(3);
-            System.out.println("El total de nodos es: " + pino.CountNodes());
-            System.out.println("El total de hojas es: " + pino.CountLeaves());
+            System.out.println("El total de nodos es: " + test.CountNodes());
+            System.out.println("El total de hojas es: " + test.CountLeaves());
+            System.out.print("Nodos en el último nivel: ");
+            test.LastLevel();
+            System.out.println("");
+            System.out.println("Imprimir según el nivel: ");
+            test.LevelOrder();
+            System.out.println("");
+            
             
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -58,5 +68,4 @@ public class EstructurasNoLineales {
         System.out.println("");
         //System.out.println(pino.Search(88));
     }
-
 }

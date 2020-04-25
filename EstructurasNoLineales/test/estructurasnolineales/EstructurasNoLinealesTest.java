@@ -63,7 +63,7 @@ public class EstructurasNoLinealesTest {
         //Reiniciar la consola
         System.out.flush();
         //llamar al método
-        test.Postorden();
+        test.PostOrden();
         //validar la salida
         assertEquals("3 7 8 5 18 21 24 23 30 25 20 10 ", salida.toString());
     }
@@ -85,9 +85,9 @@ public class EstructurasNoLinealesTest {
     }
 
     @Test
-    public void testCountLeafs() {
+    public void testCountLeaves() {
         //comparar el retorno del método con el valor esperado
-        assertEquals(6, test.CountLeafs());
+        assertEquals(6, test.CountLeaves());
     }
 
     @Test
@@ -138,17 +138,24 @@ public class EstructurasNoLinealesTest {
     public void testLastLevel() {
         //comparar el retorno del método con el valor esperado
         //tener en cuenta que se han eliminado nodos del árbol de pruebas
-        assertEquals(3, test.CountNodes());
+        System.out.flush();
+        test.LastLevel();
+        assertEquals("21 24 ", salida.toString());
     }
 
     @Test
     public void testLevelOrder() {
         //Reiniciar la consola
         System.out.flush();
+        test.Delete(5);
+        test.Delete(3);
+        test.Delete(20);
+        test.Delete(25);
+        test.Delete(30);
+        test.Delete(8);
         //llamar al método
         test.LevelOrder();
         //validar la salida
         assertEquals("10 \n7 21 \n18 23 \n24 ", salida.toString());
     }
-    
 }
