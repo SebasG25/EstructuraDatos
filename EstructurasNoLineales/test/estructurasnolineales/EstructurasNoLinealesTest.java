@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
  * @author niwdeyen
  */
 
-//NO TOCAR
+//NO TOCARR
 
 public class EstructurasNoLinealesTest {
 
