@@ -30,10 +30,24 @@ public class Graph {
         aMatrix[source][destination] = true;
         aList[source].add(destination);
     }
+    
+    public void addBidirectionalEdge(int source, int destination) {
+        aMatrix[source][destination] = true;
+        aMatrix[destination][source] = true;
+        aList[source].add(destination);
+        aList[destination].add(source);
+    }
 
     public void deleteEdge(int source, int destination) {
         aMatrix[source][destination] = false;
         aList[source].remove((Object) destination);
+    }
+    
+    public void deleteBidirectionalEdge(int source, int destination) {
+        aMatrix[source][destination] = false;
+        aMatrix[destination][source] = false;
+        aList[source].remove((Object) destination);
+        aList[destination].remove((Object) source);
     }
 
     public String showAMatrix() {
@@ -96,17 +110,22 @@ public class Graph {
         }
     }
     
-    public void doTour(){
-        Integer currentNode = 0;
-        for(int i = 0; i < aList.length-1; i++){
-            for(int j = 0; j < aList[currentNode].size(); j++){
-                if(currentNode != null){
-                    System.out.println(currentNode + " ");
+    public void doTour(){ 
+        LinkedList<Integer> visited = new LinkedList<>();
+        for(int i = 0; i < aList.length; i++){
+            if(!visited.contains(i)){
+                visited.add(i);
+            }
+            for(int node : aList[i]){
+                if(!visited.contains(node)){
+                    System.out.print(node + " ");
+                    System.out.print(i + " ");
+                    
+                }else{
+                    visited.add(node);
                 }
-               currentNode = aList[currentNode].get(j); 
             }
         }
-        
     }
     
     public int countSallies(boolean aMatrix[][], int columna){
@@ -139,11 +158,13 @@ public class Graph {
     }
     
     public void EdgesMissing(){
-        System.out.print("Vértices faltantes: [ ");
+        boolean auxMatrix[][] = aMatrix;
+        System.out.print("Arcos faltantes: [ ");
         for (int i = 0; i < totalNodes; i++) {
             for (int j = 0; j < totalNodes; j++) {
-                if(!aMatrix[i][j] && (i!=j)){
+                if(!auxMatrix[i][j] && (i!=j)){
                     System.out.print("["+ i +", "+ j +"] ");
+                    auxMatrix[j][i] = true;
                 }
             }
         }

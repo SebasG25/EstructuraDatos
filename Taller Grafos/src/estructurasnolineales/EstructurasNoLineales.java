@@ -27,11 +27,16 @@ public class EstructurasNoLineales {
         superTest.addEdge(1, 0);
         superTest.addEdge(2, 0);
         superTest.addEdge(3, 0);
+//        superTest.addEdge(0, 4);
+//        superTest.addEdge(4, 3);
+//        superTest.addEdge(3, 4);
+        
         System.out.println("lista de adyacencias");
         System.out.println(superTest.showAList());
         System.out.println(superTest.showAMatrix());
         System.out.println("Mapa de recorrido");
         superTest.doTour();
+        System.out.println("");
         System.out.println("");
         System.out.println("2. Para una matriz de adyacencias de un grafo, determinar si cada nodo tiene el mismo número de entradas y salidas.");
         boolean aMatrix[][] = new boolean[4][4];
@@ -71,16 +76,10 @@ public class EstructurasNoLineales {
         System.out.println("3. Dada una cantidad de nodos y una lista de arcos, retornar los arcos faltantes para conectar todos los nodos.");
 
         Graph superTest2 = new Graph(4);
-        superTest.addEdge(0, 1);
-        superTest.addEdge(0, 2);
-        superTest.addEdge(0, 3);
-        superTest.addEdge(1, 0);
-        superTest.addEdge(2, 0);
-        superTest.addEdge(2, 1);
-        superTest.addEdge(3, 0);
-        superTest.addEdge(3, 1);
-        superTest.addEdge(3, 3);
-        superTest.EdgesMissing();
+        superTest2.addBidirectionalEdge(0, 1);
+        superTest2.addBidirectionalEdge(1, 2);
+        superTest2.addBidirectionalEdge(2, 0);
+        superTest2.EdgesMissing();
         
         
         
