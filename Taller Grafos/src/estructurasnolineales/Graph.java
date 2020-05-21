@@ -128,7 +128,7 @@ public class Graph {
         }
     }
     
-    public int countSallies(boolean aMatrix[][], int columna){
+    private int countSallies(boolean aMatrix[][], int columna){
         int salidas = 0;
         for(int i = 0; i < totalNodes; i++){
                 if(aMatrix[i][columna]){
@@ -138,7 +138,7 @@ public class Graph {
         return salidas;
     } 
     
-    public int countEntries(boolean aMatrix[][], int fila){
+    private int countEntries(boolean aMatrix[][], int fila){
         int entradas = 0;
         for(int j = 0; j < totalNodes; j++){
             if(aMatrix[fila][j]){
