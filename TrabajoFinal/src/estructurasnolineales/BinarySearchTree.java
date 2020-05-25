@@ -198,7 +198,7 @@ public class BinarySearchTree {
                     } else {
                         father.setLeft(node.getRight());
                     }
-                    node.setRight(null);
+//                    node.setRight(null);
 
                 } else {
                     if (getRoot() == node) {
