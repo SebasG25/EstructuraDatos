@@ -122,7 +122,7 @@ public class Lienzo extends javax.swing.JPanel {
             jTextPane1.setText("");
             JOptionPane.showMessageDialog(null, "Puedes insertar máximo 9 nodos", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (!verifyNaturalNumbers(arrayInput)) {
-            //Ya esta la condición en el if
+            //Ya está la condición en el if
             jTextPane1.setText("");
         } else {
             nodeList = Arrays.asList(arrayInput);
