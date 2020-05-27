@@ -121,7 +121,7 @@ public class Lienzo extends javax.swing.JPanel {
         if (arrayInput.length > 9) {
             jTextPane1.setText("");
             JOptionPane.showMessageDialog(null, "Puedes insertar máximo 9 nodos", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (!verifyNaturalNumbers(arrayInput)) {
+        } else if (verifyNaturalNumbers(arrayInput)) {
             //Ya está la condición en el if
             jTextPane1.setText("");
         } else {
@@ -129,19 +129,12 @@ public class Lienzo extends javax.swing.JPanel {
             for (String i : nodeList) {
                 tree.Add(Integer.parseInt(i.trim()));
             }
-            EstructurasNoLineales main = new EstructurasNoLineales();
-            main.getVentana().setContentPane(this);
+            setBinarySearchTree(tree);
+//            EstructurasNoLineales main = new EstructurasNoLineales();
+//            main.getVentana().setContentPane(this);
             jTextPane1.setText("");
             clearList();
         }
-        
-        
-//        jTextField1.setEnabled(true);
-//        JFrame ventana = new JFrame();
-//        ventana.getContentPane().add(this);
-//        ventana.setDefaultCloseOperation(3);
-//        ventana.setSize(1900, 1080);
-//        ventana.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -157,8 +150,9 @@ public class Lienzo extends javax.swing.JPanel {
             for (String i : nodeList) {
                 tree.Delete(Integer.parseInt(i.trim()));
             }
-            EstructurasNoLineales main = new EstructurasNoLineales();
-            main.getVentana().setContentPane(this);
+            setBinarySearchTree(tree);
+//            EstructurasNoLineales main = new EstructurasNoLineales();
+//            main.getVentana().setContentPane(this);
             jTextPane2.setText("");
             clearList();
         }
@@ -168,11 +162,9 @@ public class Lienzo extends javax.swing.JPanel {
     private boolean verifyNaturalNumbers(String[] numbers) {
         for (int i = 0; i < numbers.length; i++) {
             if (isNumeric(numbers)) {
-                if (Integer.parseInt(numbers[i]) > 0 && Integer.parseInt(numbers[i]) <= 100) {
-                    return true;
-                } else {
+                if (!(Integer.parseInt(numbers[i]) > 0 && Integer.parseInt(numbers[i]) <= 100)) {
                     JOptionPane.showMessageDialog(null, "Los datos tienen que estar entre 1 y 100", "Error", JOptionPane.ERROR_MESSAGE);
-                    return false;
+                    return true;
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Los datos tienen que ser númericos separados por coma", "Error", JOptionPane.ERROR_MESSAGE);

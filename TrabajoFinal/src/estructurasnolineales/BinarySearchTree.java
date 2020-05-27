@@ -178,8 +178,7 @@ public class BinarySearchTree {
         if (node != null) {
             if (node == this.getRoot() && node.isLeaf()) {
                 setRoot(null);
-            }
-            if (node.isLeaf()) {
+            }else if (node.isLeaf()) {
                 if (position) {
                     father.setRight(null);
                 } else {
